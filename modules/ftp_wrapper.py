@@ -5,6 +5,7 @@ Module containing the FTPWrapper class
 from ftplib import FTP
 import ftplib
 import os
+import atexit
 
 
 class FTPWrapper(FTP):
@@ -23,6 +24,8 @@ class FTPWrapper(FTP):
         # Add Aliases
         self.ren = self.rename
         self.mkdir = self.mkd
+
+        atexit.register(self._at_exit, self) # register `self._at_exit` to be called at exit
     
 
     def login(self) -> str:
@@ -65,3 +68,10 @@ class FTPWrapper(FTP):
         if self.is_file(path):
             return self.delete(path)
         return self.rmd(path)
+
+    def _at_exit(self):
+        """At exit, gracefully and politely QUIT the connection. If this fails close the connection unilaterally."""
+        try:
+            self.quit()
+        except ftplib.all_errors:
+            self.close()
