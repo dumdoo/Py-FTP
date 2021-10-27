@@ -25,8 +25,9 @@ class FTPWrapper(FTP):
         self.ren = self.rename
         self.mkdir = self.mkd
 
-        atexit.register(self._at_exit, self) # register `self._at_exit` to be called at exit
-    
+        atexit.register(
+            self._at_exit, self
+        )  # register `self._at_exit` to be called at exit
 
     def login(self) -> str:
         """Login. Uses `self.user` and `self.passwd` as credentials."""
