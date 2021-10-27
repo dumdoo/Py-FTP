@@ -16,5 +16,4 @@ if __name__ == "__main__":
             ftp.close()
 
     print(ftp.getwelcome())
-    ftp.login()
-    print(ftp.nlst('root'))
+    print(ftp.login())
