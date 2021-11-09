@@ -6,6 +6,7 @@ import atexit
 import ftplib
 import os
 from ftplib import FTP
+from rich.table import Table
 
 
 class FTPWrapper(FTP):
@@ -67,6 +68,21 @@ class FTPWrapper(FTP):
     def _at_exit(self):
         """At exit, gracefully and politely QUIT the connection. If this fails close the connection unilaterally."""
         try:
-            self.quit()
-        except ftplib.all_errors:
-            self.close()
+            try:
+                self.quit()
+            except ftplib.all_errors:
+                self.close()
+        except AttributeError:
+            pass
+
+    def ls(self, path: str='') -> str:
+        table = Table(title=f"Directory {self.cd('.')}")
+
+        table.add_column("Type", style="yellow")
+        table.add_column("Name", style="cyan")
+        table.add_column("Size", style="purple")
+
+        for i in self.nlst(path):
+            file_size = 
+
+
