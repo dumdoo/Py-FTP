@@ -107,6 +107,7 @@ def prompt():
                         ftp.login(user, pwinput.pwinput(prompt="Enter password 🔐: "))
                     )
                 )
+            
 
             elif cmd in ["bye", "quit", "exit"]:
                 raise SystemExit
@@ -116,6 +117,9 @@ def prompt():
 
             elif cmd == "!":
                 subprocess.run(body, shell=True)
+
+            elif cmd == "ls":
+                console.print(ftp.ls(body))
 
             else:
                 console.print(f'[red bold]Unknown Command "{cmd}"')

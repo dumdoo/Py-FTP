@@ -82,7 +82,15 @@ class FTPWrapper(FTP):
         table.add_column("Name", style="cyan")
         table.add_column("Size", style="purple")
 
-        for i in self.nlst(path):
-            file_size = 
+        for f in self.nlst(path):
+            if self.is_file(f):
+                file_size = self.size(f)
+                type = "File"
+            else:
+                file_size = "N/A"
+                type = "Folder"
+            table.add_row(type, f, file_size)
+        return table
+            
 
 
