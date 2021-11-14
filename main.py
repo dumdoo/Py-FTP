@@ -130,7 +130,7 @@ def prompt():
 
 if __name__ == "__main__":
     console = Console()
-    console.rule("[bold red]PyFTP")
+    console.rule("[bold red]Py-FTP")
 
     console.print(Panel("[green]Connect to Server"))
 
