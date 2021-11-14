@@ -4,7 +4,7 @@
 ---
 
 <p align="center">
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+<a href="https://www.python.org/"><img alt="Made with Python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg"></a>
 </p>
 
 > "Without requirements or design, programming is the art of adding bugs to an empty text file."
